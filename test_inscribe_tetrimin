@@ -1,0 +1,19 @@
+int         inscribe_tetrimin(char **map, int *tetrimin , t_param *param)
+{
+    (*param).pos = -1;
+    (*param).offset = 0;
+    while ((*map)[++(*param).pos])
+    {
+        if ((*param).pos - ((*param).offset * (*param).line_size) == (*param).line_size)
+            (*param).offset++;
+        if ((*map)[(*param).pos] != '.')
+            continue;
+        if (is_inscribe(*map, tetrimin, *param))
+            if (write_tetrimin(map, tetrimin, *param))
+            {
+                (*param).letter++;
+                return (1);
+            }
+    }
+    return (0);
+}

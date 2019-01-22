@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libft/includes/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+limits.h
+-
+
+/Users/ggrimes/projects/fillit_cl/fillit.h
+fcntl.h
+-
+libft.h
+/Users/ggrimes/projects/fillit_cl/libft.h
+
+/Users/ggrimes/projects/fillit_cl/inscribe_shapes.c
+fillit.h
+/Users/ggrimes/projects/fillit_cl/fillit.h
+
