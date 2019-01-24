@@ -7,10 +7,14 @@ void    print_int(int *arr)
     int i;
     int j;
 
-    i = -1;
+    i = 1;
     j = 1;
-    while (++i <= 3)
-        printf("NUMBER = %d x = %d y = %d\n", j++, arr[i * 2], arr[i * 2 + 1]);
+	printf("tet number = %d\n", arr[0]);
+    while (i < TETRIMINO_SIZE * 2 + 1)
+	{
+        printf("NUMBER = %d x = %d y = %d\n", j++, arr[i], arr[i + 1]);
+		i += 2;
+	}
 }
 
 void    print_tetrimins_list(int **shapes, int count)
@@ -23,7 +27,7 @@ void    print_tetrimins_list(int **shapes, int count)
     int j;
     int k;
 
-    i = -1;
+    i = 0;
     minx = 0;
     maxx = 0;
     maxy = 0;

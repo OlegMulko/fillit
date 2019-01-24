@@ -12,22 +12,31 @@
 
 #include "fillit.h"
 
-char		*inscribe_tetriminos (char *map, int **tetriminos, t_prm *prm)
+char		*inscribe_tetriminos (int ***tetriminos, t_prm *prm)
 {
-	int		i;
-	char	*newmap;
+	int		tet_id;
+	char	*map;
+	int 	i;
 
-	i = -1;
-	newmap = map;
-	while (++i < (*prm).count_tetriminos)
+	CHECK((map = create_map(prm)))
+	while ((*prm).count_tetriminos > 0)
 	{
-		if (tetriminos[i] == NULL)
-			continue ;
-		while (!inscribe_tetrimino(&map, tetriminos[i], prm, (char)i))
+		if ((tet_id = inscribe_tetrimino(&map, *tetriminos, *prm, 0)) >= 0)
+		{
+			i = 0;
+			while (i < prm->count_tetriminos)
+				print_int((*tetriminos)[i++]);
+			printf("_________________________________________\n");
+			if (!del_tet(tetriminos, tet_id, prm))
+				return (NULL);
+		}
+		else
 			CHECK((map = update_map(&map, prm)))
-		newmap = inscribe_tetriminos(map, del_tet(tetriminos, i), prm);
+		i = 0;
+		while (i < prm->count_tetriminos)
+			print_int((*tetriminos)[i++]);
 	}
-	return (newmap);
+	return (map);
 }
 
 char		*create_map(t_prm *prm)
@@ -74,21 +83,27 @@ char		*update_map(char **map, t_prm *prm)
 	return (newmap);
 }
 
-int			inscribe_tetrimino(char **map, int *tetrimino , t_prm *prm, char n_letter)
+int			inscribe_tetrimino(char **map, int **tetriminos , t_prm prm, int cur_tet)
 {
-	(*prm).pos = -1;
-	(*prm).offset = 0;
-	while ((*map)[++(*prm).pos])
+	int		new_tet;
+
+	if (cur_tet >= prm.count_tetriminos)
+		return (-1);
+	prm.pos = -1;
+	prm.offset = 0;
+	while ((*map)[++prm.pos])
 	{
-		if ((*prm).pos - ((*prm).offset * (*prm).l_size) == (*prm).l_size)
-			(*prm).offset++;
-		if ((*map)[(*prm).pos] != '.')
+		if (prm.pos - (prm.offset * prm.l_size) == prm.l_size)
+			prm.offset++;
+		if ((*map)[prm.pos] != '.')
 			continue;
-		if (is_inscribe(*map, tetrimino, *prm))
-			if (write_tetrimino(map, tetrimino, *prm, n_letter))
-				return (1);
+		if (is_inscribe(*map, tetriminos[cur_tet] + 1, prm))
+			if (write_tetrimino(map, tetriminos[cur_tet] + 1, prm, tetriminos[cur_tet][0]))
+				return (tetriminos[cur_tet][0]);
+		if ((new_tet = inscribe_tetrimino(map, tetriminos, prm, cur_tet + 1)) >= 0)
+			return (new_tet);
 	}
-	return (0);
+	return (new_tet);
 }
 
 int			is_inscribe(char *map, int *tetrimino, t_prm prm)
@@ -97,9 +112,8 @@ int			is_inscribe(char *map, int *tetrimino, t_prm prm)
 	int     x;
 	int     y;
 
-	if (prm.step < 1)
+	if (prm.cnt_elem-- < 1)
 		return (1);
-	prm.step--;
 	newpos = prm.pos + tetrimino[0] + (tetrimino[1] * prm.l_size);
 	y = prm.offset + tetrimino[1];
 	x = newpos - (y * prm.l_size);
@@ -113,9 +127,8 @@ int			write_tetrimino(char **map, int *tetrimino, t_prm prm, char n_letter)
 {
 	int		newpos;
 
-	if (prm.step < 1)
+	if (prm.cnt_elem-- < 1)
 		return (1);
-	prm.step--;
 	newpos = prm.pos + tetrimino[0] + (tetrimino[1] * prm.l_size);
 	(*map)[newpos] = 'A' + n_letter;
 	if (write_tetrimino(map, tetrimino + 2, prm, n_letter))
@@ -123,8 +136,24 @@ int			write_tetrimino(char **map, int *tetrimino, t_prm prm, char n_letter)
 	return (0);
 }
 
-int         **del_tet(int **tetriminos, int n_tet)
+int			del_tet(int ***tetriminos, int tet_id, t_prm *prm)
 {
-    tetriminos[n_tet] = NULL;
-    return (tetriminos);
+	int		**newtetriminos;
+	int		i;
+	int		j;
+
+	if (!(*prm).count_tetriminos)
+		return (1);
+	CHECK((newtetriminos = (int **)malloc(sizeof(int *) * --(*prm).count_tetriminos)))
+	i = 0;
+	j = 0;
+	while (i < (*prm).count_tetriminos)
+	{
+		if ((*tetriminos)[i][0] == tet_id)
+			free((*tetriminos)[i++]);
+		newtetriminos[j++] = (*tetriminos)[i++];
+	}
+	free((*tetriminos));
+	(*tetriminos) = newtetriminos;
+	return (1);
 }

@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/read_and_validate.c.o"
   "CMakeFiles/main.dir/inscribe_shapes.c.o"
   "CMakeFiles/main.dir/print.c.o"
+  "CMakeFiles/main.dir/debug.c.o"
   "main.pdb"
   "main"
 )

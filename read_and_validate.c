@@ -31,9 +31,9 @@ int			**read_and_validate(int fd, t_prm *prm)
 		CHECK((tetrimino = get_tetrimino(readbuf, *prm)))
 		CHECK(tetrimino_is_valid(tetrimino))
 		CHECK(!(++(*prm).count_tetriminos > 26))
-		CHECK((tetriminos = add_tetrimino(&tetriminos,
-						(*prm).count_tetriminos, tetrimino)))
+		CHECK((tetriminos = add_tetrimino(&tetriminos, (*prm).count_tetriminos, tetrimino)))
 	}
+
 	ft_strdel(&readbuf);
 	return (tetriminos);
 }
@@ -76,22 +76,22 @@ int			*get_tetrimino(char *buf, t_prm prm)
 	int		*tetrimino;
 	int		x;
 
+	CHECK((tetrimino = (int *)malloc(sizeof(int) * TETRIMINO_SIZE * 2 + 1)))
 	prm.pos = -1;
 	prm.offset = 0;
-	prm.step = 0;
-	CHECK((tetrimino = (int *)malloc(sizeof(int) * TETRIMINO_SIZE * 2)))
-	while (buf[++prm.pos] && prm.step < TETRIMINO_SIZE)
+	prm.index = 1;
+	tetrimino[0] = prm.count_tetriminos;
+	while (buf[++prm.pos])
 	{
 		if (buf[prm.pos] == '\n')
 			prm.offset++;
 		if (buf[prm.pos] == '#')
 		{
 			x = prm.pos - prm.offset * (TETRIMINO_SIZE + 1);
-			if (!prm.step)
+			if (prm.index == 1)
 				put_null_points(x, &prm.x0, prm.offset, &prm.y0);
-			tetrimino[prm.step * 2] = x - prm.x0;
-			tetrimino[prm.step * 2 + 1] = prm.offset - prm.y0;
-			prm.step++;
+			tetrimino[prm.index++] = x - prm.x0;
+			tetrimino[prm.index++] = prm.offset - prm.y0;
 		}
 	}
 	return (tetrimino);
@@ -111,16 +111,16 @@ int			tetrimino_is_valid(int *tetrimino)
 
 	count_comm = 0;
 	i = -1;
-	while (++i < TETRIMINO_SIZE - 1)
+	while ((i += 2) <= TETRIMINO_SIZE * 2 - 2)
 	{
 		j = i;
-		while(++j <= TETRIMINO_SIZE - 1)
+		while((j += 2) <= TETRIMINO_SIZE * 2)
 		{
-			if (tetrimino[i * 2] + 1 == tetrimino[j * 2]
-					&& tetrimino[i * 2 + 1] == tetrimino[j * 2 + 1])
+			if (tetrimino[i] + 1 == tetrimino[j]
+					&& tetrimino[i + 1] == tetrimino[j + 1])
 				count_comm++;
-			if (tetrimino[i * 2] == tetrimino[j * 2]
-					&& tetrimino[i * 2 + 1] + 1 == tetrimino[j * 2 + 1])
+			if (tetrimino[i] == tetrimino[j]
+					&& tetrimino[i + 1] + 1 == tetrimino[j + 1])
 				count_comm++;
 		}
 	}
@@ -143,4 +143,3 @@ int			**add_tetrimino(int ***tetriminos, int count, int *tetrimino)
 	ft_memdel((void **)tetriminos);
 	return (newtetriminos);
 }
-

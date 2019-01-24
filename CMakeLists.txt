@@ -5,6 +5,6 @@ include_directories("libft/includes")
 
 add_definitions(-Wall -Wextra -Werror)
 
-add_executable(main fillit.c fillit.h read_and_validate.c inscribe_shapes.c print.c)
+add_executable(main fillit.c fillit.h read_and_validate.c inscribe_shapes.c print.c debug.c)
 
 target_link_libraries(main ${CMAKE_SOURCE_DIR}/libft/libft.a)

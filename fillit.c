@@ -18,7 +18,6 @@ int			main(int argc, char **argv)
 	int		**tetriminos;
 	char	*map;
 	t_prm	prm;
-	char	*newmap;
 
 	if (argc != 2)
 		return (print_usage());
@@ -26,13 +25,12 @@ int			main(int argc, char **argv)
 		return (print_error());
 	prm.count_tetriminos = 0;
 	prm.l_size = 2;
-	prm.step = TETRIMINO_SIZE;
+	prm.cnt_elem = TETRIMINO_SIZE;
 	if (!(tetriminos = read_and_validate(fd, &prm)))
 		return (print_error());
-    CHECK((map = create_map(&prm)))
-	if (!(newmap = inscribe_tetriminos(map, tetriminos, &prm)))
+	if (!(map = inscribe_tetriminos(&tetriminos, &prm)))
 		return (print_error());
-	print_map(newmap, prm.l_size);
+	print_map(map, prm.l_size);
 	close(fd);
 	return (0);
 }

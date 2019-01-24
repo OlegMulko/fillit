@@ -14,6 +14,7 @@
 # define FILLIT_CL_FILLIT_H
 # include <fcntl.h>
 # include "libft.h"
+# include <stdio.h>
 # define BUFF_SIZE 21
 # define TETRIMINO_SIZE 4
 # define CHECK(val) if (!val) return (0);
@@ -27,7 +28,8 @@ typedef struct	s_prm
 	int		count_tetriminos;
 	int		l_size;
 	int		map_size;
-	int		step;
+	int		index;
+	int		cnt_elem;
 }				t_prm;
 
 int		**read_and_validate(int fd, t_prm *prm);
@@ -37,16 +39,17 @@ int		*get_tetrimino(char *buf, t_prm prm);
 void	put_null_points(int x, int *x0, int y, int *y0);
 int		tetrimino_is_valid(int *tetrimino);
 int		**add_tetrimino(int ***tetriminos, int count, int *tetrimino);
-char	*inscribe_tetriminos (char *map, int **tetriminos, t_prm *prm);
-int	    inscribe_tetrimino(char **map, int *tetrimino, t_prm *prm, char n_letter);
-int		is_inscribe(char *map, int *tetrimino, t_prm prm);
+char	*inscribe_tetriminos (int ***tetriminos, t_prm *prm);
+int	    inscribe_tetrimino(char **map, int **tetriminos, t_prm prm, int count_tet);
 char	*create_map(t_prm *prm);
 char	*update_map(char **map, t_prm *prm);
 int		is_inscribe(char *map, int *tetrimino, t_prm prm);
 int		write_tetrimino(char **map, int *tetrimino, t_prm prm, char n_letter);
-int     **del_tet(int **tetriminos, int n_tet);
+int     del_tet(int ***tetriminos, int tet_id, t_prm *prm);
 void	print_map(char *map, int l_size);
 int		print_error(void);
 int		print_usage(void);
+void	print_int(int *arr);
+void    print_tetrimins_list(int **shapes, int count);
 
 #endif
