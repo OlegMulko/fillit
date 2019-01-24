@@ -16,15 +16,15 @@ unistd.h
 limits.h
 -
 
-/home/omulko/projects/fillit/fillit.h
+/Users/ggrimes/projects/git_fillit/fillit.h
 fcntl.h
 -
 libft.h
-/home/omulko/projects/fillit/libft.h
+/Users/ggrimes/projects/git_fillit/libft.h
 stdio.h
 -
 
-/home/omulko/projects/fillit/inscribe_shapes.c
+/Users/ggrimes/projects/git_fillit/inscribe_shapes.c
 fillit.h
-/home/omulko/projects/fillit/fillit.h
+/Users/ggrimes/projects/git_fillit/fillit.h
 

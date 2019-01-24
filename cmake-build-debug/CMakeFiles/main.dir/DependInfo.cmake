@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/omulko/projects/fillit/debug.c" "/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles/main.dir/debug.c.o"
-  "/home/omulko/projects/fillit/fillit.c" "/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles/main.dir/fillit.c.o"
-  "/home/omulko/projects/fillit/inscribe_shapes.c" "/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles/main.dir/inscribe_shapes.c.o"
-  "/home/omulko/projects/fillit/print.c" "/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles/main.dir/print.c.o"
-  "/home/omulko/projects/fillit/read_and_validate.c" "/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles/main.dir/read_and_validate.c.o"
+  "/Users/ggrimes/projects/git_fillit/debug.c" "/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles/main.dir/debug.c.o"
+  "/Users/ggrimes/projects/git_fillit/fillit.c" "/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles/main.dir/fillit.c.o"
+  "/Users/ggrimes/projects/git_fillit/inscribe_shapes.c" "/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles/main.dir/inscribe_shapes.c.o"
+  "/Users/ggrimes/projects/git_fillit/print.c" "/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles/main.dir/print.c.o"
+  "/Users/ggrimes/projects/git_fillit/read_and_validate.c" "/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles/main.dir/read_and_validate.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

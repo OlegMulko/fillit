@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/58/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /Users/ggrimes/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/58/bin/cmake/linux/bin/cmake -E remove -f
+RM = /Users/ggrimes/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/omulko/projects/fillit
+CMAKE_SOURCE_DIR = /Users/ggrimes/projects/git_fillit
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/omulko/projects/fillit/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ggrimes/projects/git_fillit/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -59,68 +59,68 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/fillit.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/fillit.c.o: ../fillit.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/main.dir/fillit.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/fillit.c.o   -c /home/omulko/projects/fillit/fillit.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/main.dir/fillit.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/fillit.c.o   -c /Users/ggrimes/projects/git_fillit/fillit.c
 
 CMakeFiles/main.dir/fillit.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/fillit.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/omulko/projects/fillit/fillit.c > CMakeFiles/main.dir/fillit.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ggrimes/projects/git_fillit/fillit.c > CMakeFiles/main.dir/fillit.c.i
 
 CMakeFiles/main.dir/fillit.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/fillit.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/omulko/projects/fillit/fillit.c -o CMakeFiles/main.dir/fillit.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ggrimes/projects/git_fillit/fillit.c -o CMakeFiles/main.dir/fillit.c.s
 
 CMakeFiles/main.dir/read_and_validate.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/read_and_validate.c.o: ../read_and_validate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/main.dir/read_and_validate.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/read_and_validate.c.o   -c /home/omulko/projects/fillit/read_and_validate.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/main.dir/read_and_validate.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/read_and_validate.c.o   -c /Users/ggrimes/projects/git_fillit/read_and_validate.c
 
 CMakeFiles/main.dir/read_and_validate.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/read_and_validate.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/omulko/projects/fillit/read_and_validate.c > CMakeFiles/main.dir/read_and_validate.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ggrimes/projects/git_fillit/read_and_validate.c > CMakeFiles/main.dir/read_and_validate.c.i
 
 CMakeFiles/main.dir/read_and_validate.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/read_and_validate.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/omulko/projects/fillit/read_and_validate.c -o CMakeFiles/main.dir/read_and_validate.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ggrimes/projects/git_fillit/read_and_validate.c -o CMakeFiles/main.dir/read_and_validate.c.s
 
 CMakeFiles/main.dir/inscribe_shapes.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/inscribe_shapes.c.o: ../inscribe_shapes.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/main.dir/inscribe_shapes.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/inscribe_shapes.c.o   -c /home/omulko/projects/fillit/inscribe_shapes.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/main.dir/inscribe_shapes.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/inscribe_shapes.c.o   -c /Users/ggrimes/projects/git_fillit/inscribe_shapes.c
 
 CMakeFiles/main.dir/inscribe_shapes.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/inscribe_shapes.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/omulko/projects/fillit/inscribe_shapes.c > CMakeFiles/main.dir/inscribe_shapes.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ggrimes/projects/git_fillit/inscribe_shapes.c > CMakeFiles/main.dir/inscribe_shapes.c.i
 
 CMakeFiles/main.dir/inscribe_shapes.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/inscribe_shapes.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/omulko/projects/fillit/inscribe_shapes.c -o CMakeFiles/main.dir/inscribe_shapes.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ggrimes/projects/git_fillit/inscribe_shapes.c -o CMakeFiles/main.dir/inscribe_shapes.c.s
 
 CMakeFiles/main.dir/print.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/print.c.o: ../print.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.dir/print.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/print.c.o   -c /home/omulko/projects/fillit/print.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.dir/print.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/print.c.o   -c /Users/ggrimes/projects/git_fillit/print.c
 
 CMakeFiles/main.dir/print.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/print.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/omulko/projects/fillit/print.c > CMakeFiles/main.dir/print.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ggrimes/projects/git_fillit/print.c > CMakeFiles/main.dir/print.c.i
 
 CMakeFiles/main.dir/print.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/print.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/omulko/projects/fillit/print.c -o CMakeFiles/main.dir/print.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ggrimes/projects/git_fillit/print.c -o CMakeFiles/main.dir/print.c.s
 
 CMakeFiles/main.dir/debug.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/debug.c.o: ../debug.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.dir/debug.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/debug.c.o   -c /home/omulko/projects/fillit/debug.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.dir/debug.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.dir/debug.c.o   -c /Users/ggrimes/projects/git_fillit/debug.c
 
 CMakeFiles/main.dir/debug.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/debug.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/omulko/projects/fillit/debug.c > CMakeFiles/main.dir/debug.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ggrimes/projects/git_fillit/debug.c > CMakeFiles/main.dir/debug.c.i
 
 CMakeFiles/main.dir/debug.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/debug.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/omulko/projects/fillit/debug.c -o CMakeFiles/main.dir/debug.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ggrimes/projects/git_fillit/debug.c -o CMakeFiles/main.dir/debug.c.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -141,7 +141,7 @@ main: CMakeFiles/main.dir/debug.c.o
 main: CMakeFiles/main.dir/build.make
 main: ../libft/libft.a
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/omulko/projects/fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -154,6 +154,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/omulko/projects/fillit/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/omulko/projects/fillit /home/omulko/projects/fillit /home/omulko/projects/fillit/cmake-build-debug /home/omulko/projects/fillit/cmake-build-debug /home/omulko/projects/fillit/cmake-build-debug/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ggrimes/projects/git_fillit/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ggrimes/projects/git_fillit /Users/ggrimes/projects/git_fillit /Users/ggrimes/projects/git_fillit/cmake-build-debug /Users/ggrimes/projects/git_fillit/cmake-build-debug /Users/ggrimes/projects/git_fillit/cmake-build-debug/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

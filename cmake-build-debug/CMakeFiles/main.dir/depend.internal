@@ -3,21 +3,21 @@
 
 CMakeFiles/main.dir/debug.c.o
  ../libft/includes/libft.h
- /home/omulko/projects/fillit/debug.c
- /home/omulko/projects/fillit/fillit.h
+ /Users/ggrimes/projects/git_fillit/debug.c
+ /Users/ggrimes/projects/git_fillit/fillit.h
 CMakeFiles/main.dir/fillit.c.o
  ../libft/includes/libft.h
- /home/omulko/projects/fillit/fillit.c
- /home/omulko/projects/fillit/fillit.h
+ /Users/ggrimes/projects/git_fillit/fillit.c
+ /Users/ggrimes/projects/git_fillit/fillit.h
 CMakeFiles/main.dir/inscribe_shapes.c.o
  ../libft/includes/libft.h
- /home/omulko/projects/fillit/fillit.h
- /home/omulko/projects/fillit/inscribe_shapes.c
+ /Users/ggrimes/projects/git_fillit/fillit.h
+ /Users/ggrimes/projects/git_fillit/inscribe_shapes.c
 CMakeFiles/main.dir/print.c.o
  ../libft/includes/libft.h
- /home/omulko/projects/fillit/fillit.h
- /home/omulko/projects/fillit/print.c
+ /Users/ggrimes/projects/git_fillit/fillit.h
+ /Users/ggrimes/projects/git_fillit/print.c
 CMakeFiles/main.dir/read_and_validate.c.o
  ../libft/includes/libft.h
- /home/omulko/projects/fillit/fillit.h
- /home/omulko/projects/fillit/read_and_validate.c
+ /Users/ggrimes/projects/git_fillit/fillit.h
+ /Users/ggrimes/projects/git_fillit/read_and_validate.c
