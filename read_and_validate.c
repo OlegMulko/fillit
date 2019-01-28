@@ -30,10 +30,9 @@ int			**read_and_validate(int fd, t_prm *prm)
 		CHECK(readbuf_sym_valid(readbuf, ret))
 		CHECK((tetrimino = get_tetrimino(readbuf, *prm)))
 		CHECK(tetrimino_is_valid(tetrimino))
-		CHECK(!(++(*prm).count_tetriminos > 26))
-		CHECK((tetriminos = add_tetrimino(&tetriminos, (*prm).count_tetriminos, tetrimino)))
+		CHECK(!(++(*prm).cnt_tets > 26))
+		CHECK((tetriminos = add_tetrimino(&tetriminos, (*prm).cnt_tets, tetrimino)))
 	}
-
 	ft_strdel(&readbuf);
 	return (tetriminos);
 }
@@ -80,7 +79,7 @@ int			*get_tetrimino(char *buf, t_prm prm)
 	prm.pos = -1;
 	prm.offset = 0;
 	prm.index = 1;
-	tetrimino[0] = prm.count_tetriminos;
+	tetrimino[0] = prm.cnt_tets;
 	while (buf[++prm.pos])
 	{
 		if (buf[prm.pos] == '\n')

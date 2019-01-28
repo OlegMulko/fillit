@@ -23,7 +23,7 @@ int			main(int argc, char **argv)
 		return (print_usage());
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		return (print_error());
-	prm.count_tetriminos = 0;
+	prm.cnt_tets = 0;
 	prm.l_size = 2;
 	prm.cnt_elem = TETRIMINO_SIZE;
 	if (!(tetriminos = read_and_validate(fd, &prm)))
