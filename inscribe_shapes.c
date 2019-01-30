@@ -12,31 +12,39 @@
 
 #include "fillit.h"
 
-char		*inscribe_tetriminos (int ***tets, t_prm *prm)
+char		*inscribe(int **tets, t_prm *prm)
 {
 	char	*map;
+	int 	res;
 
 	CHECK((map = create_map(prm)))
 	while (1)
 	{
 		(*prm).pos = -1;
 		(*prm).offset = 0;
-		if ((inscribe_tet(&map, *tets, *prm)))
+		if ((res = inscribe_tets(&map, tets, *prm)) == 1)
 			return (map);
+		if (res == -1)
+			return (NULL);
 		else
-			CHECK((map = update_map(&map, prm)))
+		{
+            (*prm).l_size++;
+			free(map);
+			CHECK((map = create_map(prm)))
+		}
 	}
 }
 
 char		*create_map(t_prm *prm)
 {
 	char	*map;
-	int		tet_size;
+	//int		tet_size;
 	int		i;
 
-	tet_size = (*prm).cnt_tets * TETRIMINO_SIZE;
+	/*tet_size = (*prm).cnt_tets * TETRIMINO_SIZE;
 	while (((*prm).map_size = (*prm).l_size * (*prm).l_size) < tet_size)
-		(*prm).l_size++;
+		(*prm).l_size++;*/
+	(*prm).map_size = (*prm).l_size * (*prm).l_size;
 	CHECK((map = malloc(sizeof(char *) * (*prm).map_size + 1)))
 		i = -1;
 	while (++i < (*prm).map_size)
@@ -45,38 +53,11 @@ char		*create_map(t_prm *prm)
 	return (map);
 }
 
-char		*update_map(char **map, t_prm *prm)
+int			inscribe_tets(char **map, int **tets , t_prm prm)
 {
-	char	*newmap;
-	int		i;
+	int		res;
 
-	(*prm).map_size = ((*prm).l_size + 1) * ((*prm).l_size + 1);
-	CHECK((newmap = (char *)malloc(sizeof(char) * (*prm).map_size + 1)))
-	i = 0;
-	(*prm).pos = -1;
-	(*prm).offset = 0;
-	while ((*map)[++(*prm).pos])
-	{
-		if ((*prm).pos - ((*prm).offset * (*prm).l_size) == (*prm).l_size)
-		{
-			newmap[i++] = '.';
-			(*prm).offset++;
-		}
-		newmap[i++] = (*map)[(*prm).pos];
-	}
-	while (i < (*prm).map_size)
-		newmap[i++] = '.';
-	newmap[i] = '\0';
-	(*prm).l_size++;
-	ft_memdel((void **)map);
-	return (newmap);
-}
-
-int			inscribe_tet(char **map, int **tets , t_prm prm)
-{
-    int     **ntets;
-
-	if (!prm.cnt_tets)
+	if (!*tets)
 		return (1);
 	while ((*map)[++prm.pos])
 	{
@@ -84,29 +65,41 @@ int			inscribe_tet(char **map, int **tets , t_prm prm)
 			prm.offset++;
 		if ((*map)[prm.pos] != '.')
             continue ;
-		prm.index = -1;
-		while (++prm.index < prm.cnt_tets)
-		{
-            if (is_inscribe(*map, tets[prm.index] + 1, prm))
-            {
-                write_tet(map, tets[prm.index] + 1, prm, 'A' + tets[prm.index][0]);
-                ntets = del_tet(tets, tets[prm.index][0], &prm);
-                if (inscribe_tet(map, ntets, prm))
-                    return (1);
-                else
-                {
-                    write_tet(map, tets[prm.index], prm, '.');
-                    prm.cnt_tets++;
-                    free(ntets);
-                }
+		if ((res = inscribe_one_of_tet(map, tets, prm)) == 1)
+			return (1);
+		if (res == -1)
+			return (-1);
+	}
+	return (0);
+}
 
-            }
+int 		inscribe_one_of_tet(char **map, int **tets, t_prm prm)
+{
+	int     **ntets;
+
+	prm.index = -1;
+	while (tets[++prm.index])
+	{
+		if (is_inscribe(*map, tets[prm.index] + 1, prm))
+		{
+			write_tet(map, tets[prm.index] + 1, prm, 'A' + tets[prm.index][0]);
+			if (!(ntets = del_one_tet(tets, tets[prm.index][0], &prm)))
+				return (-1);
+			if (inscribe_tets(map, ntets, prm))
+				return (1);
+			else
+			{
+				write_tet(map, tets[prm.index], prm, '.');
+				prm.cnt_tets++;
+				free(ntets);
+			}
+
 		}
 	}
 	return (0);
 }
 
-int			is_inscribe(char *map, int *tetrimino, t_prm prm)
+int			is_inscribe(char *map, int *tet, t_prm prm)
 {
 	int     newpos;
 	int     x;
@@ -114,11 +107,11 @@ int			is_inscribe(char *map, int *tetrimino, t_prm prm)
 
 	if (prm.cnt_elem-- < 1)
 		return (1);
-	newpos = prm.pos + tetrimino[0] + (tetrimino[1] * prm.l_size);
-	y = prm.offset + tetrimino[1];
+ 	newpos = prm.pos + tet[0] + (tet[1] * prm.l_size);
+	y = prm.offset + tet[1];
 	x = newpos - (y * prm.l_size);
 	if ((x >= 0 && x < prm.l_size) && y < prm.l_size && map[newpos] == '.')
-		if (is_inscribe(map, tetrimino + 2, prm))
+		if (is_inscribe(map, tet + 2, prm))
 			return (1);
 	return (0);
 }
@@ -136,24 +129,21 @@ int			write_tet(char **map, int *tetrimino, t_prm prm, char n_letter)
 	return (0);
 }
 
-int			**del_tet(int **tets, int tet_id, t_prm *prm)
+int			**del_one_tet(int **tets, int tet_id, t_prm *prm)
 {
 	int		**ntets;
 	int		i;
 	int		j;
-    int     t = -1;
 
-	CHECK((ntets = (int **)malloc(sizeof(int *) * --(*prm).cnt_tets)))
-	i = 0;
+	CHECK((ntets = (int **)malloc(sizeof(int *) * --(*prm).cnt_tets + 1)))
+	i = -1;
 	j = 0;
-	while (i < (*prm).cnt_tets)
+	while (tets[++i])
 	{
 		if (tets[i][0] == tet_id)
-			i++;
-        ntets[j++] = tets[i++];
+			continue ;
+        ntets[j++] = tets[i];
 	}
-
-    while (++t < prm->cnt_tets)
-        print_int(tets[t]);
+	ntets[j] = NULL;
 	return (ntets);
 }

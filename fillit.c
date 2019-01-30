@@ -15,7 +15,7 @@
 int			main(int argc, char **argv)
 {
 	int		fd;
-	int		**tetriminos;
+	int		**tets;
 	char	*map;
 	t_prm	prm;
 
@@ -26,9 +26,9 @@ int			main(int argc, char **argv)
 	prm.cnt_tets = 0;
 	prm.l_size = 2;
 	prm.cnt_elem = TETRIMINO_SIZE;
-	if (!(tetriminos = read_and_validate(fd, &prm)))
+	if (!(tets = read_and_validate(fd, &prm)))
 		return (print_error());
-	if (!(map = inscribe_tetriminos(&tetriminos, &prm)))
+	if (!(map = inscribe(tets, &prm)))
 		return (print_error());
 	print_map(map, prm.l_size);
 	close(fd);

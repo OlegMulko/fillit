@@ -16,35 +16,37 @@ int			**read_and_validate(int fd, t_prm *prm)
 {
 	int		ret;
 	char	*readbuf;
-	int		**tetriminos;
-	int		*tetrimino;
+	int		**tets;
+	int		*tet;
 
-	tetriminos = NULL;
+	tets = NULL;
 	readbuf = ft_strnew(BUFF_SIZE);
 	while ((ret = read(fd, readbuf, BUFF_SIZE)))
 	{
 		if (ret == -1)
 			return (NULL);
 		readbuf[ret] = '\0';
+		(*prm).size_of_last_tet = ret;
 		CHECK(readbuf_size_valid(readbuf, ret))
 		CHECK(readbuf_sym_valid(readbuf, ret))
-		CHECK((tetrimino = get_tetrimino(readbuf, *prm)))
-		CHECK(tetrimino_is_valid(tetrimino))
+		CHECK((tet = get_tet(readbuf, *prm)))
+		CHECK(tet_is_valid(tet))
 		CHECK(!(++(*prm).cnt_tets > 26))
-		CHECK((tetriminos = add_tetrimino(&tetriminos, (*prm).cnt_tets, tetrimino)))
+		CHECK((tets = add_tet(&tets, (*prm).cnt_tets, tet)))
 	}
+	if ((*prm).size_of_last_tet != 20)
+		return (NULL);
 	ft_strdel(&readbuf);
-	return (tetriminos);
+	return (tets);
 }
 
 int			readbuf_size_valid(char *buf, int size_buf)
 {
-	if (size_buf == BUFF_SIZE)
-		if (buf[size_buf - 1] == '\n' && buf[size_buf - 2] == '\n')
-			return (1);
-	if (size_buf == BUFF_SIZE - 1)
-		if (buf[size_buf - 1])
-			return (1);
+	if (size_buf == BUFF_SIZE && buf[size_buf - 1] == '\n'
+	&& buf[size_buf - 2] == '\n')
+		return (1);
+	if (size_buf == BUFF_SIZE - 1 && buf[size_buf - 1] == '\n')
+		return (1);
 	return (0);
 }
 
@@ -70,16 +72,16 @@ int			readbuf_sym_valid(char *buf, int size_buf)
 	return (1);
 }
 
-int			*get_tetrimino(char *buf, t_prm prm)
+int			*get_tet(char *buf, t_prm prm)
 {
-	int		*tetrimino;
+	int		*tet;
 	int		x;
 
-	CHECK((tetrimino = (int *)malloc(sizeof(int) * TETRIMINO_SIZE * 2 + 1)))
+	CHECK((tet = (int *)malloc(sizeof(int) * TETRIMINO_SIZE * 2 + 1)))
 	prm.pos = -1;
 	prm.offset = 0;
 	prm.index = 1;
-	tetrimino[0] = prm.cnt_tets;
+	tet[0] = prm.cnt_tets;
 	while (buf[++prm.pos])
 	{
 		if (buf[prm.pos] == '\n')
@@ -88,21 +90,21 @@ int			*get_tetrimino(char *buf, t_prm prm)
 		{
 			x = prm.pos - prm.offset * (TETRIMINO_SIZE + 1);
 			if (prm.index == 1)
-				put_null_points(x, &prm.x0, prm.offset, &prm.y0);
-			tetrimino[prm.index++] = x - prm.x0;
-			tetrimino[prm.index++] = prm.offset - prm.y0;
+				put_null_points(x, prm.offset, &prm);
+			tet[prm.index++] = x - prm.x0;
+			tet[prm.index++] = prm.offset - prm.y0;
 		}
 	}
-	return (tetrimino);
+	return (tet);
 }
 
-void		put_null_points(int x, int *x0, int y, int *y0)
+void		put_null_points(int x, int y, t_prm *prm)
 {
-	*x0 = x;
-	*y0 = y;
+    (*prm).x0 = x;
+    (*prm).y0 = y;
 }
 
-int			tetrimino_is_valid(int *tetrimino)
+int			tet_is_valid(int *tet)
 {
 	int		count_comm;
 	int		i;
@@ -115,11 +117,9 @@ int			tetrimino_is_valid(int *tetrimino)
 		j = i;
 		while((j += 2) <= TETRIMINO_SIZE * 2)
 		{
-			if (tetrimino[i] + 1 == tetrimino[j]
-					&& tetrimino[i + 1] == tetrimino[j + 1])
+			if (tet[i] + 1 == tet[j] && tet[i + 1] == tet[j + 1])
 				count_comm++;
-			if (tetrimino[i] == tetrimino[j]
-					&& tetrimino[i + 1] + 1 == tetrimino[j + 1])
+			if (tet[i] == tet[j] && tet[i + 1] + 1 == tet[j + 1])
 				count_comm++;
 		}
 	}
@@ -128,17 +128,18 @@ int			tetrimino_is_valid(int *tetrimino)
 	return (0);
 }
 
-int			**add_tetrimino(int ***tetriminos, int count, int *tetrimino)
+int			**add_tet(int ***tets, int count, int *tet)
 {
 	int		i;
-	int		**newtetriminos;
+	int		**ntets;
 
-	i = -1;
-	if (!(newtetriminos = (int **)malloc(sizeof(int *) * count)))
+	if (!(ntets = (int **)malloc(sizeof(int *) * count + 1)))
 		return (NULL);
+	i = -1;
 	while (++i < count - 1)
-		newtetriminos[i] = (*tetriminos)[i];
-	newtetriminos[count - 1] = tetrimino;
-	ft_memdel((void **)tetriminos);
-	return (newtetriminos);
+		ntets[i] = (*tets)[i];
+	ntets[count - 1] = tet;
+	ntets[count] = NULL;
+	ft_memdel((void **)tets);
+	return (ntets);
 }
