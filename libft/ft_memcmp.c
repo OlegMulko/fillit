@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 21:14:50 by ggrimes           #+#    #+#             */
-/*   Updated: 2018/12/17 20:35:41 by ggrimes          ###   ########.fr       */
+/*   Created: 2018/11/28 20:59:21 by ggrimes           #+#    #+#             */
+/*   Updated: 2019/01/10 19:52:40 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	delcont(void *cont, size_t n)
+int					ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	free(cont);
-	n = 0 + 0;
-}
+	size_t			i;
+	unsigned char	*cs1;
+	unsigned char	*cs2;
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
-{
-	t_list	*new;
-	t_list	*nlist;
-
-	if (!lst)
-		return (NULL);
-	if (!(new = f(lst)))
-		return (NULL);
-	nlist = new;
-	lst = lst->next;
-	while (lst)
-	{
-		if (!(nlist->next = f(lst)))
-		{
-			ft_lstdel(&new, delcont);
-			return (NULL);
-		}
-		lst = lst->next;
-		nlist = nlist->next;
-	}
-	return (new);
+	if (!n)
+		return (0);
+	cs1 = (unsigned char *)s1;
+	cs2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n && cs1[i] == cs2[i])
+		i++;
+	if (i == n)
+		i--;
+	return (cs1[i] - cs2[i]);
 }

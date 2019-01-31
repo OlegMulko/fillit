@@ -6,7 +6,7 @@
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 20:19:35 by ggrimes           #+#    #+#             */
-/*   Updated: 2019/01/21 20:29:38 by ggrimes          ###   ########.fr       */
+/*   Updated: 2019/01/31 20:44:20 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			**read_and_validate(int fd, t_prm *prm)
 int			readbuf_size_valid(char *buf, int size_buf)
 {
 	if (size_buf == BUFF_SIZE && buf[size_buf - 1] == '\n'
-	&& buf[size_buf - 2] == '\n')
+			&& buf[size_buf - 2] == '\n')
 		return (1);
 	if (size_buf == BUFF_SIZE - 1 && buf[size_buf - 1] == '\n')
 		return (1);
@@ -100,8 +100,8 @@ int			*get_tet(char *buf, t_prm prm)
 
 void		put_null_points(int x, int y, t_prm *prm)
 {
-    (*prm).x0 = x;
-    (*prm).y0 = y;
+	(*prm).x0 = x;
+	(*prm).y0 = y;
 }
 
 int			tet_is_valid(int *tet)

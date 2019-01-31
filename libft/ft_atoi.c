@@ -6,7 +6,7 @@
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 19:49:35 by ggrimes           #+#    #+#             */
-/*   Updated: 2018/12/27 19:00:46 by ggrimes          ###   ########.fr       */
+/*   Updated: 2019/01/10 19:52:21 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int					ft_atoi(const char *str)
 	while (ft_isdigit(str[i]))
 	{
 		num = num * 10 + str[i++] - 48;
-		if (num > LLONG_MAX || (num < LLONG_MAX && ++num_bit >= 20))
+		if (num > 9223372036854775807ULL
+				|| (num < 9223372036854775807ULL && ++num_bit >= 20))
 			return (sign == 1 ? -1 : 0);
 	}
 	return (sign * num);

@@ -6,7 +6,7 @@
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 20:31:34 by ggrimes           #+#    #+#             */
-/*   Updated: 2019/01/21 20:33:18 by ggrimes          ###   ########.fr       */
+/*   Updated: 2019/01/31 21:34:16 by ggrimes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int			print_error(void)
 
 int			print_usage(void)
 {
-	ft_putstr("usage: ./fillit parametr");
+	ft_putstr("usage: ./fillit parametr\n");
 	return (0);
 }
