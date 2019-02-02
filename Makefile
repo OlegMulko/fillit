@@ -6,26 +6,27 @@
 #    By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 20:53:56 by ggrimes           #+#    #+#              #
-#    Updated: 2019/01/31 22:13:31 by ggrimes          ###   ########.fr        #
+#    Updated: 2019/02/02 14:17:28 by rstracke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fillit
-INCLUDES=-I ./libft
+INCLUDES= ./includes/libft
 FLAGS=-Wall -Wextra -Werror
-LIB=-L ./libft -lft
-FILES=fillit.c read_and_validate.c \
-	  inscribe.c print.c
+LIB= ./includes
+FILES=./src
 
 all: ${NAME}
 
 ${NAME}:
-			gcc ${FLAGS} ${INCLUDES} ${LIB} -o ${NAME} ${FILES}
+			@make -C ${INCLUDES} re
+			gcc ${FLAGS} -I ${INCLUDES} -I ${LIB} -L ${INCLUDES} -lft -o ${NAME} ${FILES}/*.c
 
 clean:
-			rm -f ./libft/*.o
+			make -C ${INCLUDES} clean
 
 fclean:	clean
 			rm -f ${NAME}
+			make -C ${INCLUDES} fclean
 
 re:	fclean all
