@@ -6,7 +6,7 @@
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 20:19:35 by ggrimes           #+#    #+#             */
-/*   Updated: 2019/01/31 20:44:20 by ggrimes          ###   ########.fr       */
+/*   Updated: 2019/02/02 14:39:23 by rstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int			**read_and_validate(int fd, t_prm *prm)
 			return (NULL);
 		readbuf[ret] = '\0';
 		(*prm).size_of_last_tet = ret;
-		CHECK(readbuf_size_valid(readbuf, ret))
-		CHECK(readbuf_sym_valid(readbuf, ret))
-		CHECK((tet = get_tet(readbuf, *prm)))
-		CHECK(tet_is_valid(tet))
-		CHECK(!(++(*prm).cnt_tets > 26))
-		CHECK((tets = add_tet(&tets, (*prm).cnt_tets, tet)))
+		CHECK(readbuf_size_valid(readbuf, ret));
+		CHECK(readbuf_sym_valid(readbuf, ret));
+		CHECK((tet = get_tet(readbuf, *prm)));
+		CHECK(tet_is_valid(tet));
+		CHECK(!(++(*prm).cnt_tets > 26));
+		CHECK((tets = add_tet(&tets, (*prm).cnt_tets, tet)));
 	}
 	if ((*prm).size_of_last_tet != 20)
 		return (NULL);
@@ -53,8 +53,8 @@ int			readbuf_size_valid(char *buf, int size_buf)
 int			readbuf_sym_valid(char *buf, int size_buf)
 {
 	int		count_lb;
-    int		count_hash;
-    int		max_lb;
+	int		count_hash;
+	int		max_lb;
 
 	count_lb = 0;
 	count_hash = 0;
@@ -70,32 +70,6 @@ int			readbuf_sym_valid(char *buf, int size_buf)
 		buf++;
 	}
 	return (1);
-}
-
-int			*get_tet(char *buf, t_prm prm)
-{
-	int		*tet;
-	int		x;
-
-	CHECK((tet = (int *)malloc(sizeof(int) * TETRIMINO_SIZE * 2 + 1)))
-	prm.pos = -1;
-	prm.offset = 0;
-	prm.index = 1;
-	tet[0] = prm.cnt_tets;
-	while (buf[++prm.pos])
-	{
-		if (buf[prm.pos] == '\n')
-			prm.offset++;
-		if (buf[prm.pos] == '#')
-		{
-			x = prm.pos - prm.offset * (TETRIMINO_SIZE + 1);
-			if (prm.index == 1)
-				put_null_points(x, prm.offset, &prm);
-			tet[prm.index++] = x - prm.x0;
-			tet[prm.index++] = prm.offset - prm.y0;
-		}
-	}
-	return (tet);
 }
 
 void		put_null_points(int x, int y, t_prm *prm)
@@ -115,7 +89,7 @@ int			tet_is_valid(int *tet)
 	while ((i += 2) <= TETRIMINO_SIZE * 2 - 2)
 	{
 		j = i;
-		while((j += 2) <= TETRIMINO_SIZE * 2)
+		while ((j += 2) <= TETRIMINO_SIZE * 2)
 		{
 			if (tet[i] + 1 == tet[j] && tet[i + 1] == tet[j + 1])
 				count_comm++;
@@ -126,20 +100,4 @@ int			tet_is_valid(int *tet)
 	if (count_comm == 3 || count_comm == 4)
 		return (1);
 	return (0);
-}
-
-int			**add_tet(int ***tets, int count, int *tet)
-{
-	int		i;
-	int		**ntets;
-
-	if (!(ntets = (int **)malloc(sizeof(int *) * count + 1)))
-		return (NULL);
-	i = -1;
-	while (++i < count - 1)
-		ntets[i] = (*tets)[i];
-	ntets[count - 1] = tet;
-	ntets[count] = NULL;
-	ft_memdel((void **)tets);
-	return (ntets);
 }

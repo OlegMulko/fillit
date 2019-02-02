@@ -6,7 +6,7 @@
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 20:15:20 by ggrimes           #+#    #+#             */
-/*   Updated: 2019/01/31 21:43:51 by ggrimes          ###   ########.fr       */
+/*   Updated: 2019/02/02 14:20:35 by rstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # define BUFF_SIZE 21
 # define TETRIMINO_SIZE 4
-# define CHECK(val) if (!val) return (0);
+# define CHECK(val) if (!val) return (0)
 
 typedef struct	s_prm
 {

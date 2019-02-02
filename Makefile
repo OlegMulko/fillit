@@ -6,27 +6,27 @@
 #    By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 20:53:56 by ggrimes           #+#    #+#              #
-#    Updated: 2019/02/02 14:17:28 by rstracke         ###   ########.fr        #
+#    Updated: 2019/02/02 15:42:23 by ggrimes          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fillit
-INCLUDES= ./includes/libft
+LIB=./libft
 FLAGS=-Wall -Wextra -Werror
-LIB= ./includes
-FILES=./src
+FILES=fillit.c inscribe.c read_and_validate.c print.c \
+	  process_map.c
 
 all: ${NAME}
 
 ${NAME}:
-			@make -C ${INCLUDES} re
-			gcc ${FLAGS} -I ${INCLUDES} -I ${LIB} -L ${INCLUDES} -lft -o ${NAME} ${FILES}/*.c
+			@make -C ${LIB} re
+			gcc ${FLAGS} -I ${LIB} -L ${LIB} -lft -o ${NAME} ${FILES}
 
 clean:
-			make -C ${INCLUDES} clean
+			make -C ${LIB} clean
 
 fclean:	clean
 			rm -f ${NAME}
-			make -C ${INCLUDES} fclean
+			make -C ${LIB} fclean
 
 re:	fclean all

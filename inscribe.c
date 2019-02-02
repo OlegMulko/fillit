@@ -6,7 +6,7 @@
 /*   By: ggrimes <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 20:34:47 by ggrimes           #+#    #+#             */
-/*   Updated: 2019/01/31 21:45:15 by ggrimes          ###   ########.fr       */
+/*   Updated: 2019/02/02 14:35:21 by rstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char		*inscribe(int **tets, t_prm *prm)
 	char	*map;
 	int		res;
 
-	CHECK((map = create_map(prm)))
+	CHECK((map = create_map(prm)));
 	while (1)
 	{
 		if ((res = inscribe_tets(&map, tets, *prm)) == 1)
@@ -28,30 +28,12 @@ char		*inscribe(int **tets, t_prm *prm)
 		{
 			(*prm).l_size++;
 			free(map);
-			CHECK((map = create_map(prm)))
+			CHECK((map = create_map(prm)));
 		}
 	}
 }
 
-char		*create_map(t_prm *prm)
-{
-	char	*map;
-	int		tet_size;
-	int		i;
-
-	tet_size = (*prm).cnt_tets * TETRIMINO_SIZE;
-	while (((*prm).map_size = (*prm).l_size * (*prm).l_size) < tet_size)
-		(*prm).l_size++;
-	(*prm).map_size = (*prm).l_size * (*prm).l_size;
-	CHECK((map = malloc(sizeof(char *) * (*prm).map_size + 1)))
-	i = -1;
-	while (++i < (*prm).map_size)
-		map[i] = '.';
-	map[i] = '\0';
-	return (map);
-}
-
-int			inscribe_tets(char **map, int **tets , t_prm prm)
+int			inscribe_tets(char **map, int **tets, t_prm prm)
 {
 	int		res;
 
@@ -113,36 +95,4 @@ int			is_inscribe(char *map, int *tet, t_prm prm)
 		if (is_inscribe(map, tet + 2, prm))
 			return (1);
 	return (0);
-}
-
-int			write_tet(char **map, int *tetrimino, t_prm prm, char n_letter)
-{
-	int		newpos;
-
-	if (prm.cnt_elem-- < 1)
-		return (1);
-	newpos = prm.pos + tetrimino[0] + (tetrimino[1] * prm.l_size);
-	(*map)[newpos] = n_letter;
-	if (write_tet(map, tetrimino + 2, prm, n_letter))
-		return (1);
-	return (0);
-}
-
-int			**del_one_tet(int **tets, int tet_id, t_prm *prm)
-{
-	int		**ntets;
-	int		i;
-	int		j;
-
-	CHECK((ntets = (int **)malloc(sizeof(int *) * --(*prm).cnt_tets + 1)))
-	i = -1;
-	j = 0;
-	while (tets[++i])
-	{
-		if (tets[i][0] == tet_id)
-			continue ;
-		ntets[j++] = tets[i];
-	}
-	ntets[j] = NULL;
-	return (ntets);
 }
